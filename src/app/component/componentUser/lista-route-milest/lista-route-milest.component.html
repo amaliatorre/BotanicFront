@@ -1,0 +1,36 @@
+
+<div class="container">
+  <h3 class="title">Lista Hitos</h3>
+
+  <div class="background d-flex flex-column">
+
+    <div class="row">
+      <div class="col-md-12" >
+        <div *ngFor="let route of routeMilestoneTable">
+          <button (click)="showMilestones(route.name)">{{route.name}} </button>
+
+          <ul *ngIf="selectedRoute === route.name && showMilestonesList" >
+<!-- AQUIIIII CLUE-->
+            <li *ngFor="let milestone of route.milestone">
+              <button (click)="goToClue(milestone)">{{milestone.name}}</button>
+            </li>
+            <br><br>
+            <div>
+              <!--cerrar lista hitos-->
+              <button class="close" (click)="showMilestonesList=!showMilestonesList">Cerrar hitos</button>
+            </div>
+          </ul>
+        </div>
+        <div *ngIf="ShowClue">
+          <app-clue></app-clue>
+        </div>
+
+<br>
+        <br>
+      </div>
+    </div>
+<!-- AQUIIIII CLUE-->
+
+
+  </div>
+</div>

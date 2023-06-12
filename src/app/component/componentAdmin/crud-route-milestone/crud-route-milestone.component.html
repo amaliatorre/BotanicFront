@@ -1,0 +1,135 @@
+<div class="form-container">
+
+<!--CREAR RUTA-->
+<hr>
+<h3>Crear RUTA</h3>
+<form [formGroup] = 'formularioRouteC' class="form-control">
+  <div>
+    <label for="nameR">Nombre Ruta</label>
+    <br>
+    <input formControlName="nameR" type="text" name="nameR" id="nameR">
+    <br>
+    <br>
+    <button (click)="addRoute()">ADD Ruta</button>
+  </div>
+  <!--END CREAR RUTA-->
+  <hr>
+</form>
+<!--CREAR HITO-->
+<h3>Crear HITO</h3>
+<form [formGroup] = 'formularioMilestoneC' class="form-control">
+  <label  for="ruta">Seleccione una ruta</label>
+  <br>
+  <select class="form-select" formControlName="ReferenceRoute" name="ruta" (change)="onMilestoneSelectionCrearRefRutaChange($event.target)">
+    <option [value]="item.name" *ngFor="let item of routeTable">{{item.name}}</option>
+  </select>
+  <div>
+    <label  for="name">Nombre Hito</label>
+    <br>
+    <input formControlName="milestoneName" type="text" name="name" id="name">
+  </div>
+  <br>
+  <div>
+    <label  for="descripcion">Descripción</label>
+    <br>
+    <textarea formControlName="description" name="descripcion" id="descripcion" cols="30" rows="10"></textarea>
+  </div>
+  <div>
+    <label  for="info">Informacion</label>
+    <br>
+    <textarea formControlName="info" name="info" id="info" cols="30" rows="10"></textarea>
+  </div>
+  <br>
+  <div>
+
+    <button (click)="addMilestone()">ADD Hito</button>
+  </div>
+  <!--END CREAR HITO-->
+  <hr>
+</form>
+<hr>
+  <!--EDITAR RUTA-->
+<h3>Editar Ruta</h3>
+<form [formGroup] = 'formularioRouteEdit' class="form-control">
+  <label  for="editarRoute">Seleccione la ruta para editar</label>
+  <select name="editarRoute" id="editarRoute" (change)="onRouteSelectionChange($event)" >
+    <option [value]="item" *ngFor="let item of routeTable">{{item.name}}</option>
+  </select>
+  <div>
+    <label for="editNameR">Nombre de Ruta Nuevo</label>
+    <input type="text" name="editNameR" id="editNameR" formControlName="editNameR">
+  </div>
+  <br>
+  <button (click)="editRoute()">MODIFICAR Ruta</button>
+</form>
+<!--END EDITAR RUTA-->
+
+<hr>
+<!--EDITAR HITO-->
+<h3>Editar Hito</h3>
+<form [formGroup] = 'formularioMilestoneEdit' class="form-control">
+  <label for="editarMilestone">Seleccione el hito a editar</label>
+  <br>
+  <select name="editarMilestone" id="editarMilestone"  (change)="onMilestoneSelectionChange($event)" >
+    <option [value]="element" *ngFor="let element of ViewHitoSelectEdit">{{element.name}}</option>
+  </select>
+  <div>
+    <label for="nameEditM">Edita el nombre del Hito </label>
+    <input formControlName="nameEditM" type="text" name="nameEditM" id="nameEditM">
+  </div>
+  <div>
+    <label for="escriptionEditM">Editar Descripción</label>
+    <br>
+    <textarea formControlName="descriptionEditM" name="escriptionEditM" id="escriptionEditM" cols="30" rows="10"></textarea>
+  </div>
+  <div>
+    <label for="infoEditM">Editar Informacion</label>
+    <br>
+    <textarea formControlName="infoEditM" name="infoEditM" id="infoEditM" cols="30" rows="10"></textarea>
+  </div>
+  <br>
+  <br>
+  <button (click)="editMilestone()">MODIFICAR Hito</button>
+</form>
+<!--END EDITAR HITO-->
+<hr>
+
+<!--BORRAR RUTA-->
+<h3>Borrar RUTA</h3>
+<form [formGroup] = 'formularioRouteDelete' class="form-control">
+  <label for="eliminarRoute">Seleccione la ruta a eliminar</label>
+  <br>
+  <select name="eliminarRoute" id="eliminarRoute" (change)="habilitarBotonDelete($event)">
+    <option [ngValue]="item" *ngFor="let item of routeTable">{{item.name}}</option>
+  </select>
+  <br>
+  <br>
+  <button [disabled]="!controlRuta" (click)="deleteRoute()">Borrar</button>
+</form>
+<br>
+<div class="notice">
+  <fieldset>
+    <label for="nota">NOTA</label>
+    <p>Recuerde que no podra Borrar una ruta si contiene hitos</p>
+  </fieldset>
+</div>
+<!--END BORRAR RUTA-->
+<hr>
+<!--BORRAR HITO-->
+<h3>Borrar HITO</h3>
+<form [formGroup] = 'formularioMilestoneDelete' class="form-control">
+  <label for="deleteMilestone">Seleccione un hito a borrar</label>
+  <br>
+  <select class="form-select" formControlName="ReferenceMilestoneDelete" name="ruta" (change)="onMilestoneSelectionDeleteChange($event)">
+    <option [value]="item" *ngFor="let item of milestoneFull">{{item.name}}</option>
+  </select>
+  <br>
+</form>
+<div>
+  <br>
+<button (click)="deleteMilestone()">BORRAR Hito</button>
+</div>
+<!--END BORRAR HITO-->
+
+
+</div>

@@ -1,1 +1,127 @@
-/* You can add global styles to this file, and also import other style files */
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+}
+
+.container {
+  justify-content: center;
+  align-items: center;
+  background-image: url(../src/assets/img/rose_watercolor.jpg);
+  background-size: cover;
+  border-radius: 10px;
+  width: 100%;
+  padding: 5%;
+  min-width: 800px;
+}
+
+.background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  background-image: url(../src/assets/img/acuarela-verde.jpg);
+  background-size: cover;
+  margin: auto;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  border-width: medium;
+}
+
+hr {
+  border: none;
+  height: 3px;
+  background-color: #c4ebc4;
+  box-shadow: 0 2px 4px #6e7e6e80;
+}
+
+.title {
+  min-width: 250px;
+  align-items: center;
+  text-align: center;
+  margin: 0px;
+  background-color: white;
+}
+
+ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ul li {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+}
+
+ul li button {
+  border: 2px solid #6b937f;
+  margin: 5%;
+}
+
+/*Formularios genericos por subtipos*/
+
+.form-control {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-image: url(/src/assets/img/acuarela-verde.jpg);
+}
+
+.form-control label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 14px;
+  background-color: white;
+  font-weight: bolder;
+  padding: 5%;
+}
+
+.notice {
+  background-color: plum;
+}
+
+.form-group {
+  text-align: center;
+}
+
+.form-control input[type="text"] {
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  background-color: rgb(238, 235, 235);
+  /* Centrar el texto dentro del campo de entrada */
+  text-align: center;
+}
+
+
+.form-control input[type="password"] {
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  background-color: rgb(238, 235, 235);
+  /* Centrar el texto dentro del campo de entrada */
+  text-align: center;
+}
+
+
+.form-control input[type="email"] {
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  background-color: rgb(238, 235, 235);
+  /* Centrar el texto dentro del campo de entrada */
+  text-align: center;
+}

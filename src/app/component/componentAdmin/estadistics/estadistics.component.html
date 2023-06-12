@@ -1,0 +1,31 @@
+<p>estadistics works!</p>
+
+<div>
+  <button (click)="stadicticAge()">% EDAD</button>
+</div>
+<h4>% Perfiles de edades</h4>
+<div *ngIf="showStadisticAge">
+  <div class="progress">
+    <label for="">0-6</label>
+    <div class="progress-bar1" [style.width]="progressBarValue + '%'">{{progressBarValue}}%</div>
+    <label for="">7-12</label>
+    <div class="progress-bar2" [style.width]="progressBarValue + '%'">{{progressBarValue}}%</div>
+    <label for="">13-17</label>
+    <div class="progress-bar3" [style.width]="progressBarValue + '%'">{{progressBarValue}}%</div>
+    <label for="">18-28</label>
+    <div class="progress-bar4" [style.width]="progressBarValue + '%'">{{progressBarValue}}%</div>
+    <label for="">29-45</label>
+    <div class="progress-bar5" [style.width]="progressBarValue + '%'">{{progressBarValue}}%</div>
+    <label for="">46-60</label>
+    <div class="progress-bar6" [style.width]="progressBarValue + '%'">{{progressBarValue}}%</div>
+    <label for="">+60</label>
+    <div class="progress-bar7" [style.width]="progressBarValue + '%'">{{progressBarValue}}%</div>
+  </div>
+  <hr>
+  <div>
+    <button (click)="stadicticAge()">% EDAD</button>
+  </div>
+  <div>
+    <button (click)="showStadisticAge=false">Cerrar</button>
+  </div>
+</div>

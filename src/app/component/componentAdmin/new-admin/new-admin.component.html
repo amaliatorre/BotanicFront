@@ -1,0 +1,93 @@
+<p>new-admin works!</p>
+<form [formGroup]="formularioNewAdmin" class="form-control">
+  <br>
+  <div>
+    <label for="profileName">Profile Name:</label>
+    <input class="form-control" type="text" id="profileName" formControlName="profileNameAdmin" />
+  </div>
+  <br>
+  <div>
+    <label  for="birthday">Birthday:</label>
+    <input class="form-control" type="date" id="birthday" formControlName="birthdayAdmin"/>
+  </div>
+  <br>
+  <div>
+    <label for="gender">Gender:</label>
+    <select class="form-select" id="gender" formControlName="genderAdmin">
+      <option value="">Select gender</option>
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+    </select>
+  </div>
+</form>
+<form [formGroup]="formularioUserAdm">
+  <div>
+    <label  for="userEmail">Email:</label>
+    <input class="form-control" type="email" id="userEmail" formControlName="userEmail" />
+  </div>
+  <div *ngIf="showMngExistEmail">
+    <fieldset>
+    <p>El email ya existe</p>
+  </fieldset>
+  </div>
+  <br>
+  <div>
+    <label  for="password">Password:</label>
+    <input class="form-control" type="password" id="password" formControlName="password" (input)="checkSamePassword()" />
+  </div>
+
+  <div>
+    <label  for="password2">Password:</label>
+    <input class="form-control" type="password" id="password2" formControlName="password2" (input)="checkSamePassword()" />
+  </div>
+  <br>
+  <div *ngIf="showMngPasswordSame">
+    <p class="error"> Recuerda que las contraseñas deben de ser iguales</p>
+  </div>
+
+  <div>
+    <label  for="dni">DNI:</label>
+    <input class="form-control" type="text" id="dni" formControlName="dni" />
+  </div>
+  <br>
+  <div>
+    <label  for="surname">Surname:</label>
+    <input class="form-control" type="text" id="surname" formControlName="surname" />
+  </div>
+  <br>
+  <div class="form-group">
+
+    <button type="submit" (click)="createNewAdmin()" class="button" [disabled]="!emailMatch && !showMngExistEmail">Create New Adm</button>
+  </div>
+</form>
+<div>
+  <h3>Ver Tabla perfiles</h3>
+<button (click)="showTablaPerfiles = !showTablaPerfiles">Ver Perfiles</button>
+</div>
+<div *ngIf="showTablaPerfiles">
+  <table class="table-info">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Birthday</th>
+        <th>Gender</th>
+        <th>Active</th>
+        <th>Character</th>
+        <th>Color</th>
+        <th>Avatar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let profile of profileTable">
+        <td>{{ profile.name }}</td>
+        <td>{{ profile.birthday }}</td>
+        <td>{{ profile.gender }}</td>
+        <td>{{ profile.active }}</td>
+        <td>{{ profile.rol }}</td>
+        <td>{{ profile.color.code }}</td>
+        <td>{{ profile.avatar.name }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

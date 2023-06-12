@@ -1,0 +1,26 @@
+button {
+    text-align: center;
+    border-radius: 5px;
+    margin: 1% 1% 1% 1%;
+    width: 300px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Añade esta línea */
+    align-items: center; /* Añade esta línea */
+}
+.card div {
+    text-align: center;
+    margin: 1% 1% 1% 1%;
+}
+hr {
+    border: none;
+    height: 3px;
+    background-color: #c4ebc4;
+    box-shadow: 0 2px 4px #6e7e6e80;
+  }
+.none {
+    margin-right: 5%;
+}

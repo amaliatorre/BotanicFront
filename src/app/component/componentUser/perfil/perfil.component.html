@@ -1,0 +1,55 @@
+<div class="container">
+  <h3 class="title">Editar Perfil</h3>
+  <br>
+  <div class="background">
+    <form [formGroup]="profileForm" class="form-control">
+      <div>
+        <label for="name">Nombre:</label>
+        <br>
+        <input type="text" id="name" name="name" formControlName="name">
+      </div>
+      <br>
+      <div>
+        <label for="birthday">Fecha de nacimiento:</label>
+        <br>
+        <input type="date" id="birthday" name="birthday" formControlName="birthday">
+      </div>
+      <br>
+      <div>
+        <label for="gender">Género:</label>
+        <br>
+        <select id="gender" name="gender" formControlName="gender">
+          <option value="male">Masculino</option>
+          <option value="female">Femenino</option>
+          <option value="other">Otro</option>
+        </select>
+      </div>
+      <br>
+      <div>
+        <label for="active">Activo:</label>
+        <br>
+        <input type="checkbox" id="active" name="active" formControlName="active">
+      </div>
+      <br>
+      <div>
+        <label for="avatar">Avatar:</label>
+        <br>
+        <select id="avatar" name="avatar" formControlName="avatar">
+          <option *ngFor="let avatar of avatarTable" [value]="avatar">{{ avatar.name }}</option>
+        </select>
+      </div>
+      <br>
+      <div>
+        <label for="color">Color:</label>
+        <br>
+        <select id="color" name="color" formControlName="color">
+          <option *ngFor="let color of colorTable" [value]="color">{{ color.name }}</option>
+        </select>
+      </div>
+      <br>
+      <div>
+        <button type="submit" (click)="updateProfile()">Guardar cambios</button>
+      </div>
+    </form>
+  </div>
+</div>

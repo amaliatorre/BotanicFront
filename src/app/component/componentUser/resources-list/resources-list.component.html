@@ -1,0 +1,41 @@
+
+<div class="container">
+  <h3 class="title">Resources</h3>
+
+  <div class="background">
+    <div class="row">
+      <ol type="I">
+        <h5>-- PDF --</h5>
+        <li class="col-md-6" *ngFor="let pdf of pdfs">
+          <button (click)="downloadPdf(pdf.url)">{{pdf.name}}</button>
+        </li>
+
+        <h5>-- WEB --</h5>
+        <li>
+        <button> <a href="http://www.cuentoscortos.com/busqueda-naturaleza" target="_blank">Ir a cuentos</a></button>
+        </li>
+        <li>
+        <button> <a href="https://spaceplace.nasa.gov/sp/" target="_blank">Ir a la nasa para niños</a></button>
+        </li>
+        <li>
+          <button><a href="https://es.hellokids.com/" target="_blank">Recursos varios</a></button>
+        </li>
+        <li>
+          <button><a href="https://www.cokitos.com/" target="_blank">Recursos educativos</a></button>
+        </li>
+        <li>
+          <button><a href="https://math.cilenia.com/es#google_vignette" target="_blank">Juego de matemáticas</a></button>
+        </li>
+        <li>
+          <button><a href="https://www.funbrain.com/" target="_blank">Ingles</a></button>
+        </li>
+        <li>
+          <button><a href="https://kids.nationalgeographic.com/" target="_blank">Nationalgeographic Kids</a></button>
+        </li>
+        <li>
+          <button><a href="https://babyradio.es/" target="_blank">radio para niños</a></button>
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>

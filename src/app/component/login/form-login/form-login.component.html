@@ -1,0 +1,36 @@
+<div class="form-control">
+  <div>
+    <h3 class="title"> LOGIN </h3>
+    <br>
+    <div class="containerLogin">
+      <div *ngIf="errorMngErrorLogin">
+        <br>
+        <p> Usuario y/o contraseña incorrectos. </p>
+        <br>
+      </div>
+      <div >
+        <div>
+
+          <form [formGroup]="formularioLogin">
+            <div>
+              <br>
+              <label for="userEmail">Email</label>
+              <br>
+              <input type="email" id="userEmail" formControlName="userEmail" required>
+            </div>
+            <div>
+              <br>
+              <label for="password">Password</label>
+              <br>
+              <input type="password" id="password" formControlName="password" required>
+            </div>
+            <div>
+              <button type="submit" (click)="submit()" class="button">Sign in</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

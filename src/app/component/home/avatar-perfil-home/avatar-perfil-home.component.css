@@ -1,0 +1,17 @@
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  text-align: center;
+
+}
+
+.avatar img {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  width: auto;
+  height: auto;
+  object-fit: cover;
+}

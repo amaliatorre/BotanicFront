@@ -1,0 +1,70 @@
+<div class="container centrar" >
+  <h3 class="title">CRUD</h3>
+
+
+  <div class="background">
+    <div>
+      <app-crud-route-milestone></app-crud-route-milestone>
+    </div>
+    <hr>
+  </div>
+
+  <h3 class="title">Estadisticas</h3>
+  <div class="background">
+    <div>
+      <app-estadistics></app-estadistics>
+    </div>
+  </div>
+  <hr>
+
+  <h3 class="title">Nuevo Administrador</h3>
+  <div class="background">
+    <app-new-admin></app-new-admin>
+  </div>
+  <hr>
+
+  <h3 class="title">PDF BOTON</h3>
+  <div class="background">
+    <div>
+      <button (click)="getComponentContent('routesMilestones')">Generar PDF (Rutas-Hitos)</button>
+      <button (click)="getComponentContent('newAdmin')">Generar PDF (NewAdmin)</button>
+      <button (click)="getComponentContent('estadistics')">Generar PDF (Estadistics)</button>
+    </div>
+  </div>
+
+  <h3 class="title">TABLAS</h3>
+  <div>
+    <button (click)="showTables = !showTables">Generar tabla rutas e hitos</button>
+  </div>
+
+  <div id="contentToPrint">
+    <!-- Proyección de contenido de tablas rutas hitos -->
+    <div *ngIf="showTables">
+      <table class="table-info">
+        <thead>
+          <tr>
+            <th>Rutas e Hitos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of routeMilestoneTable">
+            <table>
+              <td>{{ item.name }}</td>
+              <tr *ngFor="let itemM of item.milestone">
+                <td> {{ itemM.name }} </td>
+              </tr>
+            </table>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Proyección de contenido de NewAdmin -->
+    <div *ngIf="newAdminContent" [innerHTML]="newAdminContent"></div>
+
+    <!-- Proyección de contenido de Estadistics -->
+    <div *ngIf="estadisticsContent" [innerHTML]="estadisticsContent"></div>
+  </div>
+  <hr>
+
+</div>

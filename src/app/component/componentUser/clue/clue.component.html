@@ -1,0 +1,52 @@
+
+<div class="container">
+  <h3 class="title">Hito</h3>
+  <div class="background d-flex flex-column">
+
+    <div class="row">
+
+      <div class="col-md-6">
+        <button (click)="openInfo = !openInfo">INFO</button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div *ngIf="openInfo">
+          <h4 class="title"> Info </h4>
+          <p class="info-text">{{milestoneValue.info}}</p>
+          <hr>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-12">
+        <h2> {{milestoneValue.milestone_name}} </h2>
+        <p class="info-text">{{milestoneValue.description}}</p>
+      </div>
+    </div>
+
+    <br>
+    <div class="row">
+      <div class="col-md-12">
+        <!--interruptor done-->
+        <label class="switch">
+          <input type="checkbox" [(ngModel)]="miCheckboxValue" (change)="obtenerValorCheckbox()">
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <button (click)="openPdf()">Abrir MAPA</button>
+    </div>
+    <!---->
+    <div>
+      <button (click)="onCloseClue()">Cerrar hito</button>
+    </div>
+
+  </div>
+</div>

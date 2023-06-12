@@ -1,0 +1,33 @@
+ol li{
+    color: #0c0c0c;
+    font-weight: bold;
+}
+
+li {
+    width: 100%;
+    cursor:help;
+}
+
+li a {
+    color: #0c0c0c;
+    text-decoration: underline;
+    padding: 2%;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: rgb(235, 230, 230);
+}
+button {
+position: static;
+    border-radius: 5px;
+    margin: 5% 5% 5% 5%;
+    width: 300px;
+}
+
+li button {
+    cursor:pointer;
+}
+h5 {
+    margin: 5%;
+    background-color: white;
+    text-align: center;
+}

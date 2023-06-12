@@ -1,0 +1,20 @@
+<app-head></app-head>
+<div class="container">
+  <div class="background">
+
+    <div *ngIf="showLoginForm">
+      <div>
+        <br>
+        <h2>New to Botanic? <a href="#" (click)="toggleForms()">Create an account.</a> </h2>
+      </div>
+      <app-form-login></app-form-login>
+    </div>
+
+    <div *ngIf="showRegisterForm">
+      <br>
+      <h2>Do you have account already in Botanic? <a href="#" (click)="toggleForms()">Login in account.</a> </h2>
+      <app-form-register></app-form-register>
+    </div>
+
+  </div>
+</div>

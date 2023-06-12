@@ -1,0 +1,21 @@
+.progressBarColorClass {
+  text-decoration: overline;
+  font-family: fantasy;
+padding-bottom: 3%s;
+  width: 100%;
+  height: 30px;
+  border-radius: 5px;
+  overflow: hidden;
+  padding: 5%;
+}
+
+button {
+  margin: 5%;
+}
+
+li {
+  margin: 5%;
+}
+
+
+

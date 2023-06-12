@@ -1,0 +1,43 @@
+<app-header></app-header>
+<!--perfil-Avatar-->
+<app-avatar-perfil-home></app-avatar-perfil-home>
+<!--Fin perfil-Avatar-->
+
+<!--Body cards-->
+<div class="card">
+  <hr>
+  <button (click)="showEditProfile = !showEditProfile ">Editar Perfil</button>
+  <div *ngIf="showEditProfile">
+    <app-perfil></app-perfil>
+  </div>
+
+  <button (click)="showProgress = !showProgress ">Ver Progreso</button>
+  <div *ngIf="showProgress">
+    <app-route-porcentag></app-route-porcentag>
+  </div>
+
+  <button (click)="showRoutes = !showRoutes ">Ver Ruta e Hitos</button>
+  <div *ngIf="showRoutes">
+    <app-lista-route-milest></app-lista-route-milest>
+    <div>
+      <button *ngIf="closeListaRutas()">Cerrar Lista Ruta</button>
+    </div>
+  </div>
+
+
+  <button (click)="showResource = !showResource ">Ver Recursos</button>
+  <div *ngIf="showResource">
+    <app-resources-list></app-resources-list>
+  </div>
+
+  <div *ngIf="admin" class="none">
+    <button (click)="showAdm = !showAdm">Administración</button>
+    <div *ngIf="showAdm">
+      <app-adm></app-adm>
+    </div>
+  </div>
+</div>
+<!--Fin Body cards-->
+
+<hr>
+<app-footer></app-footer>

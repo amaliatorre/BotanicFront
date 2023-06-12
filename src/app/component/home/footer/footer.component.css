@@ -1,0 +1,126 @@
+.fotter {
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+    margin-bottom: 5%;
+}
+
+.fotter p {
+    margin: 22% 5% 0% 5%;
+    font-size: medium;
+    text-align: center;
+}
+.fotter ul {
+    margin: 10% 5% 0% 5%;
+}
+.fotter ul li span {
+    font-size: medium;
+    font-weight: bold;
+}
+
+.fotter button {
+    margin: 10% 5% 0% 5%;
+    border-radius: 5px;
+}
+
+
+/*tooltips*/
+.tool {
+    position: relative;
+}
+
+.tool::after {
+    content: attr(ngbTooltip);
+    position: absolute;
+    width: 100%;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 6px;
+    background-color: #a35998;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 4px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.tool:hover::after {
+    opacity: 1;
+}
+
+.tool2 {
+    position: relative;
+}
+
+.tool2::after {
+    content: attr(ngbTooltip);
+    position: absolute;
+    width: 170%;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 6px;
+    background-color: #598fa3;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 4px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.tool2:hover::after {
+    opacity: 1;
+}
+
+.toolEmail {
+    position: relative;
+}
+
+.toolEmail::after {
+    content: attr(ngbTooltip);
+    position: absolute;
+    width: 100%;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 6px;
+    background-color: #c96da0;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 4px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.toolEmail:hover::after {
+    opacity: 1;
+}
+
+.toolMap {
+    position: relative;
+}
+
+.toolMap::after {
+    content: attr(ngbTooltip);
+    position: absolute;
+    width: 220%;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 6px;
+    background-color: #9f8a79;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 4px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.toolMap:hover::after {
+    opacity: 1;
+}
