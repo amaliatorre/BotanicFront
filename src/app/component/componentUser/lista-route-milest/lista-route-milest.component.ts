@@ -31,13 +31,17 @@ export class ListaRouteMilestComponent implements OnInit {
     this.getRouteMilestone();
   }
 
+
+  getRouteMilestone() {
+    this.dataService.obtenerRouteMilestone ();
+    this.routeMilestoneTable = this.dataService.getRouteMilestonesUser();
+
+    console.log('llega:', this.routeMilestoneTable );
+}
+
   showMilestones(route: string) {
     this.selectedRoute = route;
     this.showMilestonesList = true;
-  }
-
-  getRouteMilestone() {
-      this.routeMilestoneTable = this.dataService.getRouteMilestonesUser();
   }
 
   //viisualizar hito

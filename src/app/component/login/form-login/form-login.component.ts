@@ -23,17 +23,11 @@ export class FormLoginComponent {
   errorMngErrorLogin: boolean = false;
   public controlLogin: boolean = false;
 
-
-
   constructor(private loginService: LoginService, private router: Router, private DataServiceService: DataServiceService) {
     this.formularioLogin = new FormGroup({
       userEmail: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required])
     });
-  }
-
-  ngOnInit() {
-
   }
 
   submit() {
@@ -50,8 +44,6 @@ export class FormLoginComponent {
             if (response != null) {
               console.log('%c response en el componenteform login!! ', 'color:blue', response);
               // Autenticación exitosa
-              // enviar datos a home
-              this.DataServiceService.recibirDatosLogin(response);
               this.DataServiceService.verificacionLogin(this.controlLogin);
               this.notifyLoginVerifChange(true);
             } else {

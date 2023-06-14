@@ -7,39 +7,74 @@ import { Profile } from '../object/profile';
 import { RouteMilestoneUserService } from './route-milestone-user.service';
 
 import { Milestone } from '../object/milestones';
+import { Avatar } from '../object/avatar';
+import { Color } from '../object/color';
 @Injectable({
   providedIn: 'root'
-})export class DataServiceService {
+}) export class DataServiceService {
 
-  public usuInfo: UsuInfo= new UsuInfo('',[]); // Variable para almacenar los datos
-
+  public usuInfo: UsuInfo = new UsuInfo('', []); // Variable para almacenar los datos
   public RouteMilestoenUser: RouteMilestone[] = [];
 
   //public id, userId, name, birthday, gender, active, rol, color, avatar
   public perfiles: Profile[] = [];
-
-  public routeName:string='';
-  public email:string = '';
-  public idUser:number = 0;
+  public avatar: Avatar = new Avatar('', '', '');
+  public color: Color = new Color('', '', '');
+  public routeName: string = '';
+  public email: string = '';
+  public idUser: number = 0;
 
   public loginVerificacion: boolean = false;
 
-  constructor(private RouteMilestoneUserService:RouteMilestoneUserService) { }
+  constructor(private RouteMilestoneUserService: RouteMilestoneUserService) { }
 
-  recibirDatosLogin(response: any) {
-    console.log('Recibido el response:', response);
-    this.obtenerLoginResponse(response);
+  //Recibir objetos de Usuario Logeado exitosamente
+  recibirUser(response: any) {
+    console.log('recibirUser:', response);
+    this.usuInfo = response;
+
+    //this.obtenerEmail(this.usuInfo.email);
+    this.usuInfo.perfiles.forEach(element => {
+      //this.obtenerIdUser(element.userId);
+      console.log('perfiles:', response);
+    });
 
   }
 
-  obtenerLoginResponse(response: any) {
-    let loginResponse: LoginResponse | undefined;
+  obtenerEmail(response: string) {
+    this.email = response;
+  }
 
-    this.obtenerUsuInfo(response);
+  obtenerIdUser(response: number) {
+    this.idUser = response;
+  }
+
+  obtenerAvatar(response: Avatar) {
+
+  }
+
+
+
+
+
+  recibirRecorrido(response: any) {
+    console.log('recibirRecorrido:', response);
+    this.RouteMilestoenUser = response;
+  }
+
+
+
+
+
+
+  guardarLoginResponse(response: any) {
+
+    let usuInfo = new UsuInfo(
+      response.registerResponse.email,
+      response.registerResponse.registerUser
+    );
+    this.recibirUser(usuInfo);
     this.obtenerRouteMilestone();
-    this.verificacionLogin(true);
-
-
 
     this.email = response.registerResponse.email;
     this.perfiles = response.registerResponse.registerUser;
@@ -47,77 +82,73 @@ import { Milestone } from '../object/milestones';
 
     this.email = this.usuInfo.email;
     console.log('%c EMAIL:', 'color: blue', this.email);
-
-    console.log(this.email);
-    console.log(this.perfiles);
-    console.log(this.RouteMilestoenUser);
-
-
-    if (typeof response === 'object') {}
-
-
-    else {
-      this.verificacionLogin(false);
-    }
-    return loginResponse;
   }
 
-  obtenerUsuInfo(response: any) {
-    this.usuInfo = response.registerResponse;
-    console.log('%c usuinfo:', 'color: blue', this.usuInfo);
-  }
-
-  obtenerRouteMilestone () {
+  obtenerRouteMilestone() {
     this.getIdUser();
+    console.log(this.getIdUser());
     this.RouteMilestoneUserService.getDataFromBackendRouteMilestone(this.idUser)
-    .subscribe((data: RouteMilestone[]) => {
-      this.RouteMilestoenUser = data;
-    });
+      .subscribe((data: RouteMilestone[]) => {
+        this.RouteMilestoenUser = data;
+      });
   }
 
-  verificacionLogin(controlLogin: boolean){
-
-    if(controlLogin){
-    this.loginVerificacion = true;
-  }
-  else {
-    this.loginVerificacion = false;
-  }
+  verificacionLogin(controlLogin: boolean) {
+    console.log('DAta Service verif controlLogin', controlLogin);
+    if (controlLogin) {
+      this.loginVerificacion = true;
+    }
+    else {
+      this.loginVerificacion = false;
+    }
     return this.loginVerificacion;
 
   }
 
-//metodos para comprobar de nuevo al crear un cambio en otro componente
+  //metodos para comprobar de nuevo al crear un cambio en otro componente
 
-private loginVerifSubject: Subject<boolean> = new Subject<boolean>();
-public loginVerif$: Observable<boolean> = this.loginVerifSubject.asObservable();
+  private loginVerifSubject: Subject<boolean> = new Subject<boolean>();
+  public loginVerif$: Observable<boolean> = this.loginVerifSubject.asObservable();
 
-public getverificacionLogin(): Observable<boolean> {
-  return this.loginVerif$;
-}
+  public getverificacionLogin(): Observable<boolean> {
+    return this.loginVerif$;
+  }
 
-public updateVerificacionLogin(value: boolean): void {
-  this.loginVerifSubject.next(value);
-}
+  public updateVerificacionLogin(value: boolean): void {
+    this.loginVerifSubject.next(value);
+  }
 
   //metodos para OBTENER en componentes
 
   getUsuInfo() {
+    console.log('DataServ usuInfo', this.usuInfo);
     return this.usuInfo;
+
   }
 
   getIdUser() {
-    return this.idUser = 2;
+    this.usuInfo.perfiles.forEach(element => {
+      return this.idUser = element.userId;
+    });
+    console.log('DataServ idUser ', this.idUser);
   }
 
   getEmail() {
+    console.log('DataServ email ', this.email);
     return this.email;
+
   }
   getPerfiles() {
+    console.log('DataServ perfiles ', this.perfiles);
     return this.perfiles;
   }
 
   getRouteMilestonesUser() {
+    console.log('DataServ proute milestone ', this.RouteMilestoenUser);
     return this.RouteMilestoenUser;
+  }
+
+  getMilestone() {
+
   }
 }

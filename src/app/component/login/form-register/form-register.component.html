@@ -9,24 +9,24 @@
       <form [formGroup]="formularioProfile" class="form-control">
         <br>
         <div>
-          <label  for="profileName">Profile Name:</label>
+          <label for="profileName">Profile Name:</label>
           <br>
-          <input  type="text" id="profileName" formControlName="profileName" />
+          <input type="text" id="profileName" formControlName="profileName" />
         </div>
         <br>
         <div>
-          <label  for="birthday">Birthday:</label>
+          <label for="birthday">Birthday:</label>
           <br>
-          <input  type="date" id="birthday" formControlName="birthday" (input)="calcularEdad()" />
+          <input type="date" id="birthday" formControlName="birthday" (input)="calcularEdad()" />
         </div>
         <div *ngIf="showMngAge">
           <p class="error"> Recuerda que debes ser mayor de edad</p>
         </div>
         <br>
         <div>
-          <label  for="gender">Gender:</label>
+          <label for="gender">Gender:</label>
           <br>
-          <select  id="gender" formControlName="gender">
+          <select id="gender" formControlName="gender">
             <option value="">Select gender</option>
             <option value="male">Male</option>
             <option value="female">Female</option>
@@ -34,6 +34,7 @@
         </div>
       </form>
       <br>
+      <!--
       <form [formGroup]="formularioUser" class="form-control">
         <div>
           <label for="userEmail">Email:</label>
@@ -42,15 +43,15 @@
         </div>
         <br>
         <div>
-          <label  for="password">Password:</label>
+          <label for="password">Password:</label>
           <br>
-          <input  type="password" id="password" formControlName="password" (input)="checkSamePassword()" />
+          <input type="password" id="password" formControlName="password" (input)="checkSamePassword()" />
         </div>
 
         <div>
-          <label  for="password2">Password:</label>
+          <label for="password2">Password:</label>
           <br>
-          <input  type="password" id="password2" formControlName="password2" (input)="checkSamePassword()" />
+          <input type="password" id="password2" formControlName="password2" (input)="checkSamePassword()" />
         </div>
         <br>
         <div *ngIf="showMngPasswordSame">
@@ -58,9 +59,9 @@
         </div>
 
         <div>
-          <label  for="dni">DNI:</label>
+          <label for="dni">DNI:</label>
           <br>
-          <input  type="text" id="dni" formControlName="dni" />
+          <input type="text" id="dni" formControlName="dni" />
         </div>
         <br>
         <div>
@@ -74,6 +75,7 @@
           <button type="submit" (click)="submit()" class="button" [disabled]="!emailMatch || !checkAge">Sign in</button>
         </div>
       </form>
+      -->
       <br>
       <div *ngIf="errorMngErrorRegister">
         <p> El email ya esta en uso </p>

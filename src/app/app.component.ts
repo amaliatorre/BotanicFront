@@ -21,6 +21,8 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.checkCambios();
     console.log(this.loginVerif, 'ngoninit appcomponente verificacion');
+    //prueba
+
 
   }
 

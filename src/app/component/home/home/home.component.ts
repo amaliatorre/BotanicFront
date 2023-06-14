@@ -15,6 +15,7 @@ import { DataServiceService } from 'src/app/services/data-service.service';
 })
 export class HomeComponent implements OnInit {
   user_email: string = 'example@example.com';
+
   showProgress: boolean = false;
   showRoutes: boolean = false;
   showResource: boolean = false;
