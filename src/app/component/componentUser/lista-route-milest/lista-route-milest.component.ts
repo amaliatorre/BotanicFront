@@ -31,12 +31,11 @@ export class ListaRouteMilestComponent implements OnInit {
     this.getRouteMilestone();
   }
 
-
   getRouteMilestone() {
-    this.dataService.obtenerRouteMilestone ();
-    this.routeMilestoneTable = this.dataService.getRouteMilestonesUser();
+    this.routeMilestoneTable =  this.dataService.getMilestone();
+    //this.routeMilestoneTable = this.dataService.getRouteMilestonesUser();
 
-    console.log('llega:', this.routeMilestoneTable );
+    console.log('3 lista rutashitos listroutemilestone:', this.routeMilestoneTable );
 }
 
   showMilestones(route: string) {

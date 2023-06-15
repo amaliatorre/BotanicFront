@@ -30,6 +30,9 @@ export class FormRegisterComponent {
   registroSuccess: boolean = false;
   showEmailExist: boolean = false;
 
+  public pasw1:string = '';
+  public pasw2:string = '';
+
   public colorRegister: Color = new Color('', '', '');
   public avatarRegister: Avatar = new Avatar('', '', '');
 
@@ -133,20 +136,17 @@ export class FormRegisterComponent {
     }
   }
 
+
   checkSamePassword() {
     const password = this.formularioUser.value.password;
     const password2 = this.formularioUser.value.password2;
 
-    let valor = this.emailMatch = password === password2;
-
-    if(valor) {
-      this.emailMatch = true;
+    if (password === password2) {
       this.showMngPasswordSame = false;
-    }
-    else {
+      this. emailMatch = true;
+    } else {
       this.showMngPasswordSame = true;
     }
-
   }
 
 }

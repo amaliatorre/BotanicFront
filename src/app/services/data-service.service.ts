@@ -53,20 +53,6 @@ import { Color } from '../object/color';
 
   }
 
-
-
-
-
-  recibirRecorrido(response: any) {
-    console.log('recibirRecorrido:', response);
-    this.RouteMilestoenUser = response;
-  }
-
-
-
-
-
-
   guardarLoginResponse(response: any) {
 
     let usuInfo = new UsuInfo(
@@ -74,14 +60,15 @@ import { Color } from '../object/color';
       response.registerResponse.registerUser
     );
     this.recibirUser(usuInfo);
-    this.obtenerRouteMilestone();
-
     this.email = response.registerResponse.email;
     this.perfiles = response.registerResponse.registerUser;
     console.log('%c perfilES:', 'color: blue', this.perfiles);
 
     this.email = this.usuInfo.email;
     console.log('%c EMAIL:', 'color: blue', this.email);
+
+    this.obtenerRouteMilestone();
+    console.log('%c this.RouteMilestoenUser guardarLoginResponse:', 'color: blue', this.RouteMilestoenUser);
   }
 
   obtenerRouteMilestone() {
@@ -90,7 +77,9 @@ import { Color } from '../object/color';
     this.RouteMilestoneUserService.getDataFromBackendRouteMilestone(this.idUser)
       .subscribe((data: RouteMilestone[]) => {
         this.RouteMilestoenUser = data;
+        console.log('%c 2. this.RouteMilestoenUser DATA:', 'color: blue', this.RouteMilestoenUser);
       });
+      return this.RouteMilestoenUser;
   }
 
   verificacionLogin(controlLogin: boolean) {
@@ -143,12 +132,7 @@ import { Color } from '../object/color';
     return this.perfiles;
   }
 
-  getRouteMilestonesUser() {
-    console.log('DataServ proute milestone ', this.RouteMilestoenUser);
-    return this.RouteMilestoenUser;
-  }
-
   getMilestone() {
-
+    return this.obtenerRouteMilestone();
   }
 }

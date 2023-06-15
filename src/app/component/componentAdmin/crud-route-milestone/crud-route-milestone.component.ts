@@ -52,10 +52,10 @@ export class CrudRouteMilestoneComponent implements OnInit {
       editNameR: new FormControl('', [Validators.required]),
     });
     this.formularioMilestoneEdit = new FormGroup({
-      ReferenceRouteEdit: new FormControl('', [Validators.required]),
-      nameEdit: new FormControl('', [Validators.required]),
-      descriptionEdit: new FormControl('', [Validators.required]),
-      infoEdit: new FormControl('', [Validators.required]),
+      ReferenceRouteEditM: new FormControl('', [Validators.required]),
+      nameEditM: new FormControl('', [Validators.required]),
+      descriptionEditM: new FormControl('', [Validators.required]),
+      infoEditM: new FormControl('', [Validators.required]),
     });
 
     this.formularioRouteDelete = new FormGroup({
@@ -63,10 +63,8 @@ export class CrudRouteMilestoneComponent implements OnInit {
       newNameRD: new FormControl('', [Validators.required]),
     });
     this.formularioMilestoneDelete = new FormGroup({
-      ReferenceRouteD: new FormControl('', [Validators.required]),
-      nameD: new FormControl('', [Validators.required]),
-      descriptionD: new FormControl('', [Validators.required]),
-      infoD: new FormControl('', [Validators.required]),
+      ReferenceMilestoneDelete: new FormControl('', [Validators.required]),
+
     });
   }
 

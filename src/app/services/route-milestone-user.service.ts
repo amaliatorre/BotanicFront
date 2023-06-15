@@ -23,37 +23,65 @@ export class RouteMilestoneUserService {
 
   //Obtener RouteMilestone relacion de rutas y sus hitos
 
+/*
+  //manda el objeto en json al back
+  createCheckLogin(userCheck: UserCheck): Observable<any> {
+    return this.http.post<any>(this.urlautenticacion + '/user/login', userCheck).pipe(
+      tap(dataLogin => {
+        if (dataLogin) {
+          this.dataService.guardarLoginResponse(dataLogin);
+        }
+      })
+    );
+  }
+
+
+  guardarLoginResponse(response: any) {
+
+    let usuInfo = new UsuInfo(
+      response.registerResponse.email,
+      response.registerResponse.registerUser
+    );
+    this.recibirUser(usuInfo);
+    this.obtenerRouteMilestone();
+
+    this.email = response.registerResponse.email;
+    this.perfiles = response.registerResponse.registerUser;
+    console.log('%c perfilES:', 'color: blue', this.perfiles);
+
+    this.email = this.usuInfo.email;
+    console.log('%c EMAIL:', 'color: blue', this.email);
+  }
+*/
+
   getDataFromBackend(userInfo: UsuInfo): Observable<any> {
     return this.http.post<any>(this.urlautenticacion + '/routes/getall', userInfo).pipe(
       map(response => {
         if (response != null) {
-          // Devolver el objeto completo de la respuesta nombre ruta + objetoHitos
-          console.log('respuesta del service RUTA ',response );
-
-          localStorage.setItem('rutas', JSON.stringify(response) );
+          console.log('respuesta del service Rutas', response);
           return response;
         } else {
-          // Realiza acciones adicionales si la respuesta no es exitosa
-          console.log('La solicitud no fue exitosa');
-          // Puedes devolver cualquier cosa que desees en el observable, por ejemplo, un mensaje de error
           throw new Error('La solicitud no fue exitosa');
         }
       })
-    );;
+    );
   }
 
 getDataFromBackendRouteMilestone(id:number): Observable<RouteMilestone[]> {
   return this.http.post<any>(this.urlautenticacion + '/milestones/routes', id ).pipe(
     map(response => {
       if (response != null) {
-        console.log('respuesta del service RUTA-milestones', response);
+        console.log('1. respuesta del service RUTA-milestones', response);
         return response;
       } else {
         console.log('La solicitud no fue exitosa');
         throw new Error('La solicitud no fue exitosa');
       }
+
     })
+
   );
+
 }
 
 

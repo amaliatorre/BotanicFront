@@ -25,7 +25,7 @@ export class RoutePorcentagComponent implements OnInit {
 
   getRouteMilestoneUser() {
 
-    this.routeMilestoneUser = this.DataServiceService.getRouteMilestonesUser();
+    //this.routeMilestoneUser = this.DataServiceService.getRouteMilestonesUser();
     console.log('%c Rutas Milestone: ', 'color: green', this.routeMilestoneUser);
 
   }

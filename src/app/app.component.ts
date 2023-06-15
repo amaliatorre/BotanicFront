@@ -27,7 +27,6 @@ export class AppComponent implements OnInit {
   }
 
   checkCambios() {
-    console.log('AQUI ESTOYYYYY');
     this.DataServiceService.getverificacionLogin().subscribe((value: boolean) => {
       this.loginVerif = value;
       console.log(this.loginVerif, 'ngOnInit AppComponent verificacion');

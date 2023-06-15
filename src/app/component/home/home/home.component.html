@@ -20,7 +20,7 @@
   <div *ngIf="showRoutes">
     <app-lista-route-milest></app-lista-route-milest>
     <div>
-      <button *ngIf="closeListaRutas()">Cerrar Lista Ruta</button>
+      <button (click) = "closeListaRutas()">Cerrar Lista Ruta</button>
     </div>
   </div>
 

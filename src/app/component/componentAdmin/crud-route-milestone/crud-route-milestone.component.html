@@ -70,7 +70,7 @@
 <form [formGroup] = 'formularioMilestoneEdit' class="form-control">
   <label for="editarMilestone">Seleccione el hito a editar</label>
   <br>
-  <select name="editarMilestone" id="editarMilestone"  (change)="onMilestoneSelectionChange($event)" >
+  <select name="editarMilestone" id="editarMilestone"  (change)="onMilestoneSelectionChange($event)" formControlName="ReferenceRouteEditM">
     <option [value]="element" *ngFor="let element of ViewHitoSelectEdit">{{element.name}}</option>
   </select>
   <div>
