@@ -35,7 +35,7 @@ export class AvatarPerfilHomeComponent implements OnInit {
   obtenerAvatar(){
     this.perfiles.forEach(element => {
       console.log('%c elemento: ', 'color:blue', element);
-      if(element.rol == 'user') {
+      if(element.rol == 'user' || element.rol == 'admin') {
         this.color = element.color.code;
         let url: string = '../../../..' + element.avatar.location;
         this.localizacion = url;
@@ -43,6 +43,7 @@ export class AvatarPerfilHomeComponent implements OnInit {
         console.log('%c color: ', 'color:blue', this.color);
         console.log('%c localizacion: ', 'color:blue', this.localizacion);
       }
+
 
     });
   }

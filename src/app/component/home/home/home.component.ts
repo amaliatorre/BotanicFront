@@ -21,15 +21,15 @@ export class HomeComponent implements OnInit {
   showResource: boolean = false;
   showEditProfile: boolean = false;
 
-  showAdm: boolean = true;
-  admin: boolean = true;
+  showAdm: boolean = false;
+  admin: boolean = false;
 
   public usuInfo: UsuInfo = new UsuInfo("", []);
   public routeMilestoneUser = new RouteMilestone();
 
   //dato enviado a header
   @Output() emailUserChange = new EventEmitter<string>();
-  public mail:string = '';
+  public mail: string = '';
 
   //datos recibidos de login
   @Input() userInfo!: UsuInfo;
@@ -44,6 +44,7 @@ export class HomeComponent implements OnInit {
     //this.routeMilestoneUser = this.dataService.getRouteMilestoneUser();
 
     this.checkAdmin();
+    console.log('%c mirar bool ngif-button','color:green',  this.showAdm , this.admin);
     //console.log('respuesta de response componente HOME info usu:', this.userInfo);
     //console.log('respuesta de response componente HOME ruta Hito:', this.routeMilestoneUser);
     //this.enviarDatosEmail(this.userInfo.email)
@@ -57,12 +58,13 @@ export class HomeComponent implements OnInit {
   }
   //si el rol del algun perfil es admin visualizar estos componentes
   checkAdmin() {
-    this.usuInfo.perfiles.forEach(item => {
-      if (item.rol == 'admin') {
-        this.showAdm = true;
-      }
-    });
+    if(this.dataService.getRol()) {
+      this.admin = true;
+    }
+    console.log('%c mirar service rol','color:green', this.dataService.getRol());
+
   }
+
   closeListaRutas() {
     this.showRoutes = false;
   }

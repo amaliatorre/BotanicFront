@@ -23,6 +23,7 @@ import { Color } from '../object/color';
   public routeName: string = '';
   public email: string = '';
   public idUser: number = 0;
+  public rol: string = '';
 
   public loginVerificacion: boolean = false;
 
@@ -141,6 +142,23 @@ import { Color } from '../object/color';
     });
   }
 
+
+getRol() {
+  let hayAdmin:boolean = false;
+  this.usuInfo.perfiles.forEach(element => {
+    let elemento = element.rol;
+    console.log('1AA ROL', elemento)
+    if(elemento === 'admin')
+    {
+      console.log('1C ENTRE EN TRUE ==')
+      hayAdmin = true;
+    }
+    else {
+      console.log('1D ENTRE EN FALSE ==')
+    }
+  });
+  return hayAdmin;
+}
   getEmail() {
     console.log('DataServ email ', this.email);
     return this.email;
