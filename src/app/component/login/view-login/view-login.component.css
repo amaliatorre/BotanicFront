@@ -1,4 +1,12 @@
+.fullContent {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
 
+  .fullContent > app-form-login {
+    flex: 1;
+  }
 
 
 

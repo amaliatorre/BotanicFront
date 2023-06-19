@@ -8,22 +8,11 @@
     </div>
     <hr>
   </div>
-
-  <h3 class="title">Estadisticas</h3>
-  <div class="background">
-    <div>
-      <app-estadistics></app-estadistics>
-    </div>
-  </div>
   <hr>
 
-  <h3 class="title">Nuevo Administrador</h3>
-  <div class="background">
-    <app-new-admin></app-new-admin>
-  </div>
-  <hr>
 
-  <h3 class="title">PDF BOTON</h3>
+
+  <!--<h3 class="title">PDF BOTON</h3>
   <div class="background">
     <div>
       <button (click)="getComponentContent('routesMilestones')">Generar PDF (Rutas-Hitos)</button>
@@ -37,9 +26,9 @@
     <button (click)="showTables = !showTables">Generar tabla rutas e hitos</button>
   </div>
 
-  <div id="contentToPrint">
+  <div id="contentToPrint">-->
     <!-- Proyección de contenido de tablas rutas hitos -->
-    <div *ngIf="showTables">
+   <!-- <div *ngIf="showTables">
       <table class="table-info">
         <thead>
           <tr>
@@ -58,13 +47,13 @@
         </tbody>
       </table>
     </div>
-
+  -->
     <!-- Proyección de contenido de NewAdmin -->
-    <div *ngIf="newAdminContent" [innerHTML]="newAdminContent"></div>
+   <!-- <div *ngIf="newAdminContent" [innerHTML]="newAdminContent"></div>-->
 
     <!-- Proyección de contenido de Estadistics -->
-    <div *ngIf="estadisticsContent" [innerHTML]="estadisticsContent"></div>
-  </div>
+    <!--<div *ngIf="estadisticsContent" [innerHTML]="estadisticsContent"></div>
+  </div>-->
   <hr>
 
 </div>

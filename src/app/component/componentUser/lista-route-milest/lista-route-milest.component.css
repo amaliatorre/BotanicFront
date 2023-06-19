@@ -6,16 +6,13 @@
 }
 
 .milestones-list li {
-  margin-right: 0.3%;
+  margin: 3%;
 }
 
 .close {
+  display: flex;
+  justify-content: center;
   background: #026576;
-  background-image: -webkit-linear-gradient(top, #026576, #000000);
-  background-image: -moz-linear-gradient(top, #026576, #000000);
-  background-image: -ms-linear-gradient(top, #026576, #000000);
-  background-image: -o-linear-gradient(top, #026576, #000000);
-  background-image: linear-gradient(to bottom, #026576, #000000);
   text-decoration: none;
   -webkit-border-radius: 17;
   -moz-border-radius: 17;
@@ -23,10 +20,31 @@
   font-family: Arial;
   color: #ffffff;
   font-size: 20px;
-  padding: 15px;
 }
 
 .close:hover {
   background: #5ecadd;
   text-decoration: none;
+}
+
+button {
+  display: flex;
+  justify-content: center;
+  margin: 3%;
+  border-radius: 10px;
+  margin-left: 5%;
+}
+
+li button :hover {
+  background: #026576;
+}
+.image-size {
+  margin: 1%;
+  width: 200px;
+  height: 50px;
+}
+
+.botonclose {
+  margin-left: 15%;
+
 }

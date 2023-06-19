@@ -7,22 +7,18 @@
   <div>
     <div>
       <form [formGroup]="formularioProfile" class="form-control">
-        <br>
         <div>
           <label for="profileName">Profile Name:</label>
           <input type="text" id="profileName" formControlName="profileName" />
         </div>
-        <br>
         <div>
-          <br>
           <label for="birthday">Birthday:</label>
-          <input type="date" id="birthday" formControlName="birthday" (input)="calcularEdad()" />
+          <input type="date" id="birthday" formControlName="birthday" (input)="calcularEdad()">
         </div>
         <div *ngIf="showMngAge">
           <p class="error"> Recuerda que debes ser mayor de edad</p>
         </div>
         <div>
-          <br>
           <label for="gender">Gender:</label>
           <select id="gender" formControlName="gender">
             <option value="">Select gender</option>
@@ -31,41 +27,31 @@
           </select>
         </div>
       </form>
-      <br>
       <form [formGroup]="formularioUser" class="form-control">
         <div>
-          <br>
           <label for="email">Email:</label>
           <input type="email" id="email" formControlName="userEmail" />
         </div>
         <div>
-          <br>
           <label for="password">Password:</label>
           <input type="password" id="password" formControlName="password" (blur)="checkSamePassword()" />
         </div>
         <div>
-          <br>
           <label for="password2">Repite Password:</label>
           <input type="password" id="password" formControlName="password2" (blur)="checkSamePassword()" />
         </div>
-        <br>
         <div *ngIf="showMngPasswordSame">
           <p class="error"> Recuerda que las contraseñas deben de ser iguales</p>
         </div>
         <div>
-          <br>
           <label for="dni">DNI:</label>
           <input type="text" id="dni" formControlName="dni" />
         </div>
-        <br>
         <div>
-          <br>
           <label for="surname">Surname:</label>
           <input type="text" id="surname" formControlName="surname" />
         </div>
-        <br>
         <div class="form-group">
-          <br>
           <button type="submit" (click)="submit()" class="button" [disabled]="!emailMatch || !checkAge">Sign in</button>
         </div>
       </form>

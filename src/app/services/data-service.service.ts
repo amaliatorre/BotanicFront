@@ -26,17 +26,20 @@ import { Color } from '../object/color';
 
   public loginVerificacion: boolean = false;
 
-  constructor(private RouteMilestoneUserService: RouteMilestoneUserService) { }
+  //que escuche modificaciones de la tabla milestoneUser
+
+
+  constructor(private RouteMilestoneUserService: RouteMilestoneUserService) {
+
+  }
 
   //Recibir objetos de Usuario Logeado exitosamente
   recibirUser(response: any) {
-    console.log('recibirUser:', response);
     this.usuInfo = response;
 
     //this.obtenerEmail(this.usuInfo.email);
     this.usuInfo.perfiles.forEach(element => {
       //this.obtenerIdUser(element.userId);
-      console.log('perfiles:', response);
     });
 
   }
@@ -49,9 +52,6 @@ import { Color } from '../object/color';
     this.idUser = response;
   }
 
-  obtenerAvatar(response: Avatar) {
-
-  }
 
   guardarLoginResponse(response: any) {
 
@@ -79,20 +79,40 @@ import { Color } from '../object/color';
         this.RouteMilestoenUser = data;
         console.log('%c 2. this.RouteMilestoenUser DATA:', 'color: blue', this.RouteMilestoenUser);
       });
-      return this.RouteMilestoenUser;
+    return this.RouteMilestoenUser;
   }
+
+  checkCompleteMilestoneUpdate(milestone: Milestone) {
+    try {
+      // Recorre el array routeMilestoneTable
+      for (const route of this.RouteMilestoenUser) {
+        // Busca el hito que coincida con el nombre
+        const index = route.milestone.findIndex((m: Milestone) => m.name === milestone.name);
+
+        if (index !== -1) {
+          // Reemplaza el hito encontrado con uno nuevo
+          route.milestone[index] = milestone;
+        }
+      }
+    }
+  catch {
+        console.log('error al actualizar la tabla Data de completeMilestone', 'color:red',);
+      }
+    }
+
+
 
   verificacionLogin(controlLogin: boolean) {
-    console.log('DAta Service verif controlLogin', controlLogin);
-    if (controlLogin) {
-      this.loginVerificacion = true;
-    }
-    else {
-      this.loginVerificacion = false;
-    }
-    return this.loginVerificacion;
+      console.log('DAta Service verif controlLogin', controlLogin);
+      if (controlLogin) {
+        this.loginVerificacion = true;
+      }
+      else {
+        this.loginVerificacion = false;
+      }
+      return this.loginVerificacion;
 
-  }
+    }
 
   //metodos para comprobar de nuevo al crear un cambio en otro componente
 
@@ -119,7 +139,6 @@ import { Color } from '../object/color';
     this.usuInfo.perfiles.forEach(element => {
       return this.idUser = element.userId;
     });
-    console.log('DataServ idUser ', this.idUser);
   }
 
   getEmail() {
@@ -133,6 +152,6 @@ import { Color } from '../object/color';
   }
 
   getMilestone() {
-    return this.obtenerRouteMilestone();
+    return this.RouteMilestoenUser;
   }
 }

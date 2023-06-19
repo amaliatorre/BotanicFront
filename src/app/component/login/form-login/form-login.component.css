@@ -61,3 +61,10 @@ h2 {
     background-color: #ccc;
     cursor: not-allowed;
   }
+
+
+.fullContent {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}

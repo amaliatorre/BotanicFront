@@ -10,12 +10,12 @@
   <div *ngIf="showEditProfile">
     <app-perfil></app-perfil>
   </div>
-
+  <hr>
   <button (click)="showProgress = !showProgress ">Ver Progreso</button>
   <div *ngIf="showProgress">
     <app-route-porcentag></app-route-porcentag>
   </div>
-
+  <hr>
   <button (click)="showRoutes = !showRoutes ">Ver Ruta e Hitos</button>
   <div *ngIf="showRoutes">
     <app-lista-route-milest></app-lista-route-milest>
@@ -23,13 +23,12 @@
       <button (click) = "closeListaRutas()">Cerrar Lista Ruta</button>
     </div>
   </div>
-
-
+  <hr>
   <button (click)="showResource = !showResource ">Ver Recursos</button>
   <div *ngIf="showResource">
     <app-resources-list></app-resources-list>
   </div>
-
+  <hr>
   <div *ngIf="admin" class="none">
     <button (click)="showAdm = !showAdm">Administración</button>
     <div *ngIf="showAdm">

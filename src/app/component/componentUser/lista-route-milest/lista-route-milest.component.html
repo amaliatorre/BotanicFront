@@ -6,31 +6,36 @@
 
     <div class="row">
       <div class="col-md-12" >
-        <div *ngFor="let route of routeMilestoneTable">
-          <button (click)="showMilestones(route.name)">{{route.name}} </button>
+        <div *ngFor="let route of routeMilestoneTable;  let i = index">
+          <button (click)="showMilestones(route.name)">
+            {{route.name}}
+<img src="../../../../assets/img/rutas/" alt="">
+            <img class="image-size "  *ngIf="listImg[i]" [src]="listImg[i]" alt="Imagen" />
+          </button>
 
           <ul *ngIf="selectedRoute === route.name && showMilestonesList" >
 <!-- AQUIIIII CLUE-->
             <li *ngFor="let milestone of route.milestone">
               <button (click)="goToClue(milestone)">{{milestone.name}}</button>
+
             </li>
             <br><br>
-            <div>
-              <!--cerrar lista hitos-->
-              <button class="close" (click)="showMilestonesList=!showMilestonesList">Cerrar hitos</button>
-            </div>
           </ul>
         </div>
-        <div *ngIf="ShowClue">
-          <app-clue></app-clue>
-        </div>
-
-<br>
-        <br>
       </div>
+        <hr>
+        <div >
+          <!--cerrar lista hitos-->
+          <button class="botonclose"  (click)="cerrarHitos()">Cerrar hitos</button>
+        </div>
+        <br>
     </div>
+    <br>
+        <div *ngIf="ShowClue" class="background">
+          <app-clue [milestone]="milestoneOutput" (closeClue)="onCloseClue($event)"></app-clue>
+        </div>
+        <br>
 <!-- AQUIIIII CLUE-->
-
-
   </div>
 </div>
+<hr>

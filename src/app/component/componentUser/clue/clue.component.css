@@ -9,6 +9,7 @@
     overflow:scroll;
     text-align:justify;
     align-content: center;
+    padding: 3%;
   }
 
 
@@ -83,4 +84,9 @@ input:checked + .slider {
     width: 400px; /* Establece el ancho deseado */
     height: 300px; /* Establece la altura deseada */
     background-color: aliceblue;
+  }
+
+  button {
+    margin: 3%;
+    border-radius: 15px;
   }

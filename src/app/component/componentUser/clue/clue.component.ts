@@ -1,8 +1,8 @@
-import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
 import { Milestone } from 'src/app/object/milestones';
-import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
-
+import { DataServiceService } from 'src/app/services/data-service.service';
+import { Observable, Subject } from 'rxjs';
+import { RouteMilestone } from 'src/app/object/routeMilestones';
 
 @Component({
   selector: 'app-clue',
@@ -11,22 +11,50 @@ import { Router } from '@angular/router';
 })
 export class ClueComponent implements OnInit{
 
+
+  @Input() milestone: EventEmitter<Milestone> | undefined;
+  @Output() closeClue: EventEmitter<Milestone> = new EventEmitter<Milestone>();
+
   public openInfo: boolean = false;
   public openMap: boolean = false;
 
+  //milestone que viene de padre lista hitos
   public milestoneValue: any = null;
+
   public miCheckboxValue: boolean = false;
 
-  constructor(private router: Router) {}
+
+  constructor(private dataService: DataServiceService) {}
+
+
+
 
   ngOnInit() {
-    const { milestone } = history.state;
-    console.log('history.state', history.state);
-    this.milestoneValue = milestone;
+    this.pasarObservableMilestone();
+
   }
 
+  pasarObservableMilestone() {
+    if (this.milestone) {
+      this.milestone.subscribe((milestoneObj: Milestone) => {
+        this.milestoneValue = milestoneObj;
+        console.log('%c ObserrvclueVALUE ', 'color:green', this.milestoneValue);
+      });
+    }
+  }
+
+  onCloseClue() {
+    //actualiza la tabla routeMilestoneUser de data Service
+    this.dataService.checkCompleteMilestoneUpdate(this.milestoneValue);
+
+  }
+
+  openPdf(): void {
+    const pdfUrl = '../../../../assets/img/pdf/Mapa-del-jardin.-de-la-concepcion.pdf';
+    window.open(pdfUrl, '_blank');
+  }
   obtenerValorCheckbox() {
-    if (this.milestoneValue) {
+    if (this.milestone) {
       if (this.miCheckboxValue) {
         console.log("El checkbox está seleccionado.");
         this.milestoneValue.completed = true;
@@ -37,18 +65,5 @@ export class ClueComponent implements OnInit{
     }
   }
 
-  openPdf(): void {
-    const pdfUrl = '../../../../assets/img/pdf/Mapa-del-jardin.-de-la-concepcion.pdf';
-    window.open(pdfUrl, '_blank');
-  }
-  onCloseClue() {
-
-    // Realiza cualquier acción necesaria antes de redirigir
-    // Define los datos que deseas pasar al componente destino
-    const dataToUpdate = this.milestoneValue;
-
-    // Redirige al componente destino y pasa los datos en el estado de la ruta
-    this.router.navigate(['/lista_rutas'], { state: { dataToUpdate } });
-  }
-
 }
+

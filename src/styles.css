@@ -66,15 +66,15 @@ ul li button {
 /*Formularios genericos por subtipos*/
 
 .form-control {
-  display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   margin-bottom: 5px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  background-color: #c6dad0 ;
   background-image: url(/src/assets/img/acuarela-verde.jpg);
 }
 
@@ -84,9 +84,10 @@ ul li button {
   align-items: center;
   text-align: center;
   font-size: 14px;
-  background-color: white;
   font-weight: bolder;
   padding: 5%;
+  padding-bottom: 2%;
+  padding-top: 2%;
 }
 
 .notice {
@@ -118,6 +119,25 @@ ul li button {
 
 
 .form-control input[type="email"] {
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  background-color: rgb(238, 235, 235);
+  /* Centrar el texto dentro del campo de entrada */
+  text-align: center;
+}
+
+
+.form-control input[type="date"] {
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  background-color: rgb(238, 235, 235);
+  /* Centrar el texto dentro del campo de entrada */
+  text-align: center;
+}
+
+.form-control select {
   display: block;
   text-align: center;
   margin: 0 auto;

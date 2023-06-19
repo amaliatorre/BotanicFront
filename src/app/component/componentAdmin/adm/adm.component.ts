@@ -46,19 +46,18 @@ export class AdmComponent implements OnInit {
       // Autenticación fallida
       console.log('Existe un problema obtener la tabla completa de usuario de relacion ruta hito ');
     }
-
   }
 
   //obtener el html de los otros componentes para pdf
-  getComponentContent(componentName: string): void {
+  /*getComponentContent(componentName: string): void {
     if (componentName === 'newAdmin') {
       // Obtener el contenido de NewAdmin
-      this.newAdminContent = '<app-new-admin></app-new-admin>';
+      //this.newAdminContent = '<app-new-admin></app-new-admin>';
     } else if (componentName === 'estadistics') {
       // Obtener el contenido de Estadistics
       this.estadisticsContent = '<app-estadistics></app-estadistics>';
     }
-  }
+  }*/
 }
 
 
