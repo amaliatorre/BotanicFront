@@ -138,7 +138,7 @@ createRoute(route: TableRoute): Observable<any> {
 }
 
 /*ACTUALIZAR */
-updateMilestone(Milestone: TableMilestone): Observable<any> {
+updateMilestone(Milestone: Milestone): Observable<any> {
   return this.http.post<any>(this.urlautenticacion + '/milestones/update',Milestone).pipe(
     map(response => {
       if (response != null) {

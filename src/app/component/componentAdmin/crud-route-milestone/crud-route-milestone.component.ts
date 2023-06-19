@@ -20,9 +20,12 @@ import { concatMap } from 'rxjs/operators';
 })
 export class CrudRouteMilestoneComponent implements OnInit {
 
-  //CONFIGURAR FORM CONSTRUCTOR
-  //INICIALIZAR FORM EDITAR MILESTONE CON PLACEHOLDER -VALUE
-  //SERVICE DE ENVIAR DATOS UPGRADE BACK
+  /*Visualizacion notice*/
+  error:string = 'Hay un error';
+  success:string = 'Todo ha salido correcto'
+
+
+
 
   /*Declaracion de Formularios */
   formularioMilestoneC: FormGroup;
@@ -90,8 +93,11 @@ export class CrudRouteMilestoneComponent implements OnInit {
     this.RouteMilestoneUserService.getDataFromBackendRouteMilestone(this.idUser)
       .subscribe((milestones: RouteMilestone[]) => {
         this.milestoneTable = milestones;
+        this.milestoneFull = [];
+
         this.milestoneTable.forEach(element => {
           element.milestone.forEach(item=> {
+
             this.milestoneFull.push(item);
 
           });
@@ -137,6 +143,7 @@ export class CrudRouteMilestoneComponent implements OnInit {
 
   /*Crear*/
   public newRoute: TableRoute = new TableRoute(0, '');
+  showNoticeNewRoute:boolean = false;
 
 
   /*RUTA*/
@@ -153,16 +160,25 @@ export class CrudRouteMilestoneComponent implements OnInit {
         // Autenticación fallida
         console.log('La ruta NO se añadió correctamente');
       }
+      this.showNoticeNewRoute = true;
     });
   }
 
   public newMilestone: Milestone = new Milestone();
+  showNoticeNewMilestone:boolean = false;
 
 /*MILESTONE */
   addMilestone() {
 
     this.newMilestone.id = 0;
-    this.newMilestone.routeId = this.formularioMilestoneC.get('ReferenceRoute')?.value;
+    let route = this.formularioMilestoneC.get('ReferenceRoute')?.value;
+    this.milestoneTable.forEach(element => {
+      if(element.name == route) {
+        element.milestone.forEach(item => {
+          this.newMilestone.routeId = item.routeId;
+        });
+      }
+    });
     this.newMilestone.name = this.formularioMilestoneC.get('milestoneName')?.value;
     this.newMilestone.description = this.formularioMilestoneC.get('description')?.value;
     this.newMilestone.info = this.formularioMilestoneC.get('info')?.value;
@@ -177,6 +193,7 @@ export class CrudRouteMilestoneComponent implements OnInit {
         // Autenticación fallida
         console.log('El hito NO se añadio correctamente');
       }
+      this.showNoticeNewMilestone = true;
     });
   }
 
@@ -184,11 +201,13 @@ export class CrudRouteMilestoneComponent implements OnInit {
   public seleccionadoEditR: TableRoute = new TableRoute(0, '');
   public newRuta: TableRoute = new TableRoute(0, '');
 
-  public seleccionadoEditM: TableMilestone = new TableMilestone();
-  public editMilestoneNameEdit: string = '0';
+  public seleccionadoEditM: Milestone = new Milestone();
+  public editMilestoneNameEdit: Milestone = new Milestone();
   public ViewHitoSelectEdit: Milestone[] = [];
 
   //Editar rutas e hitos
+  showNoticeEditRoute:boolean = false;
+
 
   /*RUTA*/
   editRoute() {
@@ -207,23 +226,24 @@ export class CrudRouteMilestoneComponent implements OnInit {
         // Autenticación fallida
         console.log('La ruta NO se edito correctamente');
       }
+      this.showNoticeEditRoute = true;
     });
   }
 
-
-  // public milestoneTable: TableMilestone[] = [];
-  //public milestoneTableParse: parseGetMilestone = new parseGetMilestone();
-  //seleccionadoEditM lo que obtine edel valor input
-
-
   /*MILESTONE */
+  showNoticeEditMilestone:boolean = false;
+
   editMilestone() {
-    console.log('%c 2C edicion hito', 'color:blue', this.formularioMilestoneEdit.get('ReferenceEditM')?.value);
-    this.editMilestoneNameEdit = this.seleccionadoEditM.name;
-    this.seleccionadoEditM.referenciaRuta = (this.formularioMilestoneEdit.get('ReferenceEditM')?.value).id;
-    this.seleccionadoEditM.name = this.formularioMilestoneEdit.get('nameEdit')?.value;
-    this.seleccionadoEditM.description = this.formularioMilestoneEdit.get('descriptionEdit')?.value;
-    this.seleccionadoEditM.info = this.formularioMilestoneEdit.get('infoEdit')?.value;
+
+     this.seleccionadoEditM.id = this.formularioMilestoneEdit.get('ReferenceEditM')?.value.id,
+     this.seleccionadoEditM.routeId = this.formularioMilestoneEdit.get('ReferenceEditM')?.value.routeId
+
+     console.log('%c 1C edicion hito', 'color:blue', this.formularioMilestoneEdit.get('ReferenceEditM')?.value);
+    this.seleccionadoEditM.name = this.formularioMilestoneEdit.get('nameEditM')?.value;
+
+    this.seleccionadoEditM.description = this.formularioMilestoneEdit.get('descriptionEditM')?.value;
+
+    this.seleccionadoEditM.info = this.formularioMilestoneEdit.get('infoEditM')?.value;
 
 console.log('%c 3C edicion hito', 'color:blue', this.seleccionadoEditM);
 
@@ -233,7 +253,7 @@ console.log('%c 3C edicion hito', 'color:blue', this.seleccionadoEditM);
 
         this.milestoneTable = this.milestoneTable.map(elemento => {
 
-          let nameSeach: string = this.editMilestoneNameEdit;
+          let nameSeach: string = this.editMilestoneNameEdit.name;
           console.log('El hito se edito correctamente en bbdd');
           return elemento;
 
@@ -242,6 +262,7 @@ console.log('%c 3C edicion hito', 'color:blue', this.seleccionadoEditM);
         // Autenticación fallida
         console.log('El hito NO se elimino correctamente');
       }
+      this.showNoticeEditMilestone = true;
     });
   }
 
@@ -253,6 +274,8 @@ console.log('%c 3C edicion hito', 'color:blue', this.seleccionadoEditM);
 
 
  /**Eliminar Seleccionado*/
+ showNoticeDeleteRoute:boolean = false;
+
  public seleccionadoRutaDelete: TableRoute = new TableRoute(0, '');
  public controlRuta: boolean = true;
  public showAviso:boolean = false;
@@ -265,7 +288,8 @@ console.log('%c 3C edicion hito', 'color:blue', this.seleccionadoEditM);
   deleteRoute(): void {
     let event = this.formularioRouteDelete.get('ReferenceRouteD')?.value;
     console.log('1D ',  event);
-    const existeCoincidencia = this.buscarMilestone(event.id);
+    const existeCoincidencia = this.buscarMilestone(event.value.id);
+
     if (!existeCoincidencia) {
       this.controlRuta = true;
       this.RouteMilestoneUserService.deleteRoute(event).subscribe({
@@ -280,12 +304,14 @@ console.log('%c 3C edicion hito', 'color:blue', this.seleccionadoEditM);
       // Acción en caso de haber coincidencias
       if (window.confirm('¿Estás seguro de que deseas borrar todos los hitos?')) {
         // Acciones para borrar todos los hitos
-        this.borrarMilestoneCoincidentesRuta(event.id);
+        let response = this.borrarMilestoneCoincidentesRuta(event.id);
 
       } else {
         // En caso de cancelar el borrado No se hace nada
       }
+      this.showNoticeDeleteRoute = true;
     }
+
   }
 
   buscarMilestone(routeId: number): boolean {
@@ -315,14 +341,19 @@ console.log('%c 3C edicion hito', 'color:blue', this.seleccionadoEditM);
     }
   }
 
+/**  this.formularioMilestoneDelete = new FormGroup({
+      ReferenceMilestoneDelete: new FormControl('', [Validators.required]),
+    }); */
 
 
 /*MILESTONE */
   /**Eliminar Seleccionado*/
+  showNoticeDeleteMilestone:boolean = false;
   public seleccionadoMilestoneDelete: Milestone = new Milestone();
 
   deleteMilestone() {
-    this.seleccionadoMilestoneDelete = this.formularioMilestoneC.get('ReferenceMilestoneDelete')?.value;
+    this.seleccionadoMilestoneDelete = this.formularioMilestoneDelete.get('ReferenceMilestoneDelete')?.value;
+    console.log('1G', this.seleccionadoMilestoneDelete);
 
     this.RouteMilestoneUserService.deleteMilestone(this.seleccionadoMilestoneDelete).subscribe(response => {
       if (response != null) {
@@ -332,6 +363,7 @@ console.log('%c 3C edicion hito', 'color:blue', this.seleccionadoEditM);
       else {
         //problema con el borrado del hito
       }
+      this.showNoticeDeleteMilestone = true;
     });
   }
 
