@@ -96,24 +96,24 @@ import { Color } from '../object/color';
         }
       }
     }
-  catch {
-        console.log('error al actualizar la tabla Data de completeMilestone', 'color:red',);
-      }
+    catch {
+      console.log('error al actualizar la tabla Data de completeMilestone', 'color:red',);
     }
+  }
 
 
 
   verificacionLogin(controlLogin: boolean) {
-      console.log('DAta Service verif controlLogin', controlLogin);
-      if (controlLogin) {
-        this.loginVerificacion = true;
-      }
-      else {
-        this.loginVerificacion = false;
-      }
-      return this.loginVerificacion;
-
+    console.log('DAta Service verif controlLogin', controlLogin);
+    if (controlLogin) {
+      this.loginVerificacion = true;
     }
+    else {
+      this.loginVerificacion = false;
+    }
+    return this.loginVerificacion;
+
+  }
 
   //metodos para comprobar de nuevo al crear un cambio en otro componente
 
@@ -143,22 +143,21 @@ import { Color } from '../object/color';
   }
 
 
-getRol() {
-  let hayAdmin:boolean = false;
-  this.usuInfo.perfiles.forEach(element => {
-    let elemento = element.rol;
-    console.log('1AA ROL', elemento)
-    if(elemento === 'admin')
-    {
-      console.log('1C ENTRE EN TRUE ==')
-      hayAdmin = true;
-    }
-    else {
-      console.log('1D ENTRE EN FALSE ==')
-    }
-  });
-  return hayAdmin;
-}
+  getRol() {
+    let hayAdmin: boolean = false;
+    this.usuInfo.perfiles.forEach(element => {
+      let elemento = element.rol;
+      console.log('1AA ROL', elemento)
+      if (elemento === 'admin') {
+        console.log('1C ENTRE EN TRUE ==')
+        hayAdmin = true;
+      }
+      else {
+        console.log('1D ENTRE EN FALSE ==')
+      }
+    });
+    return hayAdmin;
+  }
   getEmail() {
     console.log('DataServ email ', this.email);
     return this.email;
@@ -171,5 +170,41 @@ getRol() {
 
   getMilestone() {
     return this.RouteMilestoenUser;
+  }
+
+  //----------------------------------------------------------------------------------------------
+  /*LISTA TABLA HARCODEADO CAMBIAR - IMPLEMENTAR */
+
+  tableColor: Color[] = [
+    new Color("Rose Quartz", "#fc5484", "Delicate and feminine"),
+    new Color("Cherry Blossom", "#fda9b6", "Soft and delicate as a flower"),
+    new Color("Deep Sea", "#265762", "Mysterious and calm"),
+    new Color("Blue Gray", "#8fa9b7", "Serene and soothing"),
+    new Color("Olive Green", "#719618", "Natural and rustic"),
+    new Color("Teal", "#6b937f", "Balanced and versatile")
+  ];
+
+  getColorTable() {
+    return this.tableColor;
+  }
+
+  tableAvatar: Avatar[] = [
+    new Avatar('A_Ducky_Duck','/assets/img/avatar/A_Ducky_Duck.png','An adorable yellow duck'),
+    new Avatar('Chilly_Penguin','/assets/img/avatar/Chilly_Penguin.png','A cute penguin with a scarf'),
+    new Avatar('Cute_Walrus','/assets/img/avatar/Cute_Walrus.png','A charming walrus'),
+    new Avatar('Happy_Cactus','/assets/img/avatar/Happy_Cactus.png','A smiling cactus'),
+    new Avatar('Miss_Carnation','/assets/img/avatar/Miss_Carnation.png','A lovely pink carnation'),
+    new Avatar('Miss_Rose','/assets/img/avatar/Miss_Rose.png','A beautiful rose'),
+    new Avatar('Mister_Whitebell','/assets/img/avatar/Mister_Whitebell.png','A handsome white bell'),
+    new Avatar('Mister_Zebra','/assets/img/avatar/Mister_Zebra.png','A cool zebra'),
+    new Avatar('Red_Raccoon','/assets/img/avatar/Red_Raccoon.png','A red raccoon'),
+    new Avatar('Smart_Feline','/assets/img/avatar/Smart_Feline.png','A smart feline'),
+    new Avatar('Spotter_Elephant','/assets/img/avatar/Spotter_Elephant.png','An elephant with spots'),
+    new Avatar('Spray_Gun_Women','/assets/img/avatar/Spray_Gun_Women.png','A woman with a spray gun'),
+    new Avatar('The_Fern_Boy','/assets/img/avatar/The_Fern_Boy.png','A boy with a fern hat')
+  ];
+
+  getAvatarTable() {
+    return this.tableAvatar;
   }
 }

@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Profile } from 'src/app/object/profile';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Avatar } from 'src/app/object/avatar';
 import { Color } from 'src/app/object/color';
-import { ProfilesService } from 'src/app/services/profiles.service';
-import { Router } from '@angular/router';
+import { DataServiceService } from 'src/app/services/data-service.service';
+import { Profile } from 'src/app/object/profile';
+import { TooltipDirective } from 'ngx-bootstrap/tooltip/tooltip.directive';
 
 @Component({
   selector: 'app-perfil',
@@ -13,17 +12,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent implements OnInit {
-
-  public profile: Profile = new Profile(0,0,'', new Date(), '', false, '', new Color('', '', ''), new Avatar('', '', ''));
+  public profile: Profile = new Profile(0, 0, '', new Date(), '', false, '', new Color('', '', ''), new Avatar('', '', ''));
   profileForm: FormGroup;
   nameBefore: string = '';
-  colorTable:Color[] = [];
-  avatarTable:Avatar[] = [];
+  colorTable: Color[] = [];
+  avatarTable: Avatar[] = [];
 
+  @ViewChild('avatarTooltip', { static: true }) avatarTooltip!: TooltipDirective;
 
-  constructor(private route: ActivatedRoute, private router: Router, private formBuilder: FormBuilder, private profileService: ProfilesService) {
-    //definición del form
+  constructor(private dataService: DataServiceService) {
     this.profileForm = new FormGroup({
+      perfilSelect: new FormControl('', Validators.required),
       name: new FormControl('', Validators.required),
       birthday: new FormControl('', Validators.required),
       gender: new FormControl('', Validators.required),
@@ -34,17 +33,18 @@ export class PerfilComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //recibimos le objeto del componente vatar-perfil-home
-    const itemString = this.route.snapshot.paramMap.get('item');
-    if (itemString) {
-      this.profile = JSON.parse(itemString) as Profile;
-      this.nameBefore = this.profile.name;
-      //inicializacion del form con los datos del perfil
-      this.patchFormValues();
-    }
+    this.getTablesAvatarColor();
+    this.getUserInfo();
+
   }
 
-  //
+  public perfiles: Profile[] = [];
+
+  getUserInfo() {
+    this.perfiles = this.dataService.getPerfiles();
+    console.log('1P perfiles Edicion - existentes', this.perfiles);
+  }
+
   patchFormValues(): void {
     if (this.profile) {
       this.profileForm.patchValue({
@@ -58,29 +58,63 @@ export class PerfilComponent implements OnInit {
     }
   }
 
-  //modificacion del perfil tras los cambios del usuario
-  updateProfile(): void {
+  color1 = new Color('', '', '');
+  avatar1 = new Avatar('', '', '');
+  perfilSeleccionado: Profile = new Profile(
+    0,
+    0,
+    '',
+    new Date(),
+    '',
+    false,
+    'profile',
+    this.color1,
+    this.avatar1
+  );
 
-    /*----------------------------------------------*/
+  updateProfile(): void {
     if (this.profileForm.valid) {
-      this.profile.name = this.profileForm.controls["name"].value;
-      this.profile.birthday = this.profileForm.controls["birthday"].value;
-      this.profile.gender = this.profileForm.controls["gender"].value;
-      this.profile.active = this.profileForm.controls["active"].value;
-      this.profile.avatar = this.profileForm.controls["avatar"].value;
-      this.profile.color = this.profileForm.controls["color"].value;
+      this.perfilSeleccionado = this.profileForm.get('perfilSelect')?.value;
+      this.profile.name = this.profileForm.controls['name'].value;
+      this.profile.birthday = this.profileForm.controls['birthday'].value;
+      this.profile.gender = this.profileForm.controls['gender'].value;
+      this.profile.active = this.profileForm.controls['active'].value;
+      this.profile.avatar = this.profileForm.controls['avatar'].value;
+      this.profile.color = this.profileForm.controls['color'].value;
+
+      console.log('%c perfil modificado', 'color:pink', this.profile);
     }
-    //preparacion apr amandar ambos objetos
-    const navigationExtras = {
-      state: {
-        profile: this.profile,
-        nameBefore: this.nameBefore
-      }
-    };
-    this.router.navigate(['/profileHome'], navigationExtras);
   }
 
+  tableAvatar: Avatar[] = [];
+  tableColor: Color[] = [];
+  avatarSelecc = new Avatar('', '', '');
+  confirmacion: boolean = false;
 
+  getTablesAvatarColor() {
+    this.tableColor = this.dataService.getColorTable();
 
+    this.tableAvatar = this.dataService.getAvatarTable();
+    this.tableAvatar.forEach(element => {
+      console.log( '1H',element.location);
+        let location= '../../../..' + element.location;
+        element.location = location;
+
+    });
+  }
+  confirmarSeleccion(avatar: Avatar) {
+    this.confirmacion = true;
+    this.avatarSelecc = avatar;
+  }
+
+  seleccionarAvatar(avatar: Avatar) {
+    this.profileForm.controls['avatar'].setValue(avatar);
+    this.cancelarSeleccion();
+  }
+
+  cancelarSeleccion() {
+    this.confirmacion = false;
+    this.avatarSelecc = new Avatar('', '', '');
+  }
 
 }

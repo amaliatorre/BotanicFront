@@ -17,7 +17,7 @@ export class ProfilesService {
  //obtener tabla de perfiles
 
   getDataFromBackend(): Observable<any> {
-    return this.http.get<any>(this.urlautenticacion + '/getTableProfile').pipe(
+    return this.http.get<any>(this.urlautenticacion + '/guser/profile/edit').pipe(
       map(response => {
         if (response.success) {
           // Devolver el objeto completo de la respuesta

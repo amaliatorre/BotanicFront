@@ -78,6 +78,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     TooltipModule.forRoot(),
     NgxPrintModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

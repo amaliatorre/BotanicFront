@@ -1,0 +1,42 @@
+
+
+.avatar-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+  }
+
+
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+  }
+
+  .avatar-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+
+  .color-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .color-line {
+    width: 100%;
+    height: 10px;
+  }
+
+  .img {
+    padding: 3%;
+    border-radius: 15px;
+  }
+
+  button {
+    border-radius: 15px;
+  }
+

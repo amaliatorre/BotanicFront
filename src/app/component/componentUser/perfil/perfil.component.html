@@ -2,7 +2,16 @@
   <h3 class="title">Editar Perfil</h3>
   <br>
   <div class="background">
-    <form [formGroup]="profileForm" class="form-control">
+    <form [formGroup]="profileForm" class="form-control>
+      ">
+      <label for="perfilSelect">Seleccione un perfil</label>
+      <br>
+      <select class="form-select" formControlName="perfilSelect" name="perfilSelect">
+        <option [ngValue]="item" *ngFor="let item of perfiles">{{item.name}}</option>
+      </select>
+      <br>
+
+
       <div>
         <label for="name">Nombre:</label>
         <br>
@@ -31,25 +40,35 @@
         <input type="checkbox" id="active" name="active" formControlName="active">
       </div>
       <br>
-      <div>
-        <label for="avatar">Avatar:</label>
-        <br>
-        <select id="avatar" name="avatar" formControlName="avatar">
-          <option *ngFor="let avatar of avatarTable" [value]="avatar">{{ avatar.name }}</option>
-        </select>
+
+      <h1 class="title">Avatar</h1>
+      <div class="row">
+        <div class="col-md-4" *ngFor="let avatar of tableAvatar">
+          <div class="avatar-container">
+            <img class="img" [src]="avatar.location" alt="Avatar" tooltip="{{avatar.description}}">
+
+            <br>
+            <button (click)="confirmarSeleccion(avatar)">{{ avatar.name }}</button>
+          </div>
+          <div class="confirmation-container" *ngIf="confirmacion && avatarSelecc === avatar">
+            <h3>¿Seleccionar {{ avatar.name }}?</h3>
+            <button (click)="seleccionarAvatar(avatar)">Aceptar</button>
+            <button (click)="cancelarSeleccion()">Cancelar</button>
+          </div>
+        </div>
       </div>
-      <br>
       <div>
         <label for="color">Color:</label>
         <br>
         <select id="color" name="color" formControlName="color">
-          <option *ngFor="let color of colorTable" [value]="color">{{ color.name }}</option>
+          <option *ngFor="let color of tableColor" [ngValue]="color" [style.background-color]="color.code">
+            {{ color.name }}
+          </option>
         </select>
-      </div>
-      <br>
-      <div>
-        <button type="submit" (click)="updateProfile()">Guardar cambios</button>
+        <br>
+        <br>
       </div>
     </form>
+    <br>
   </div>
 </div>
